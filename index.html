@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Открытка-задание</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="card">
+
+    <!-- Экран 1: Персонализация -->
+    <div class="screen active" id="screen1">
+        <h1>Привет!</h1>
+        <p>Напиши, как ты любишь, когда я тебя называю!</p>
+        <input type="text" id="username" placeholder="Введи имя" />
+        <button onclick="startCard()">Начнем!</button>
+    </div>
+
+    <!-- Экран 2: Задание -->
+    <div class="screen" id="screen2">
+        <h2 id="task-title">эта новогодняя открытка тебе!</h2>
+        <p>
+            Сделай паузу, глубоко вдохни и улыбнись 😊<br>
+            Подумай о чем-то хорошем и теплом.
+            Следующий шаг будет посвещен тебе!
+        </p>
+        <button onclick="goToScreen(3)">Я готова!</button>
+    </div>
+
+    <!-- Экран 3: Поддержка -->
+    <div class="screen" id="screen3">
+        <img src="photo/photo.jpg" alt="Фото">
+        <h2 id="congrats">Ты молодец! 💖</h2>
+        <p id="support">
+            Я горжусь тобой. Ты справляешься лучше, чем думаешь 🌟
+        </p>
+        <audio id="music" src="music/music.mp3"></audio>
+    </div>
+
+</div>
+
+<div id="snow"></div>
+<script src="js/script.js"></script>
+</body>
+</html>

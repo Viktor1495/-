@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ❄️ Зимний фон */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+/* 🎁 Карточка */
+.card {
+    background: #fffdf8;
+    width: 100%;
+    max-width: 420px;
+    padding: 26px 22px;
+    border-radius: 26px;
+    text-align: center;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 2px rgba(255, 215, 0, 0.15);
+    position: relative;
+}
+
+/* ✨ Лёгкое золотое свечение */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 28px;
+    background: linear-gradient(45deg, transparent, rgba(255,215,0,0.25), transparent);
+    z-index: -1;
+}
+
+/* Экраны */
+.screen {
+    display: none;
+    animation: fade 0.6s ease;
+}
+.screen.active {
+    display: block;
+}
+
+/* Заголовки */
+h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #b11226; /* новогодний красный */
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #1f6f54; /* ёлочный зелёный */
+}
+
+/* Текст */
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+/* 🎅 Кнопка */
+button {
+    width: 100%;
+    background: linear-gradient(135deg, #b11226, #e63946);
+    border: none;
+    color: white;
+    padding: 16px;
+    border-radius: 32px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 6px 15px rgba(177, 18, 38, 0.4);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* 🎄 Фото */
+img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Поле ввода */
+input[type="text"] {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 16px;
+    border-radius: 22px;
+    border: 1px solid #d8cfc4;
+    margin-bottom: 22px;
+    text-align: center;
+    background: #fffaf2;
+}
+
+/* Анимация появления */
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ❄️ Снег */
+#snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+    user-select: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+/* ✨ Золотые искры */
+.sparkle {
+    position: absolute;
+    top: -10px;
+    color: gold;
+    font-size: 8px;
+    opacity: 0.8;
+    user-select: none;
+    pointer-events: none;
+    animation: sparkle-fall linear, sparkle-twinkle ease-in-out infinite;
+}
+
+@keyframes sparkle-fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
