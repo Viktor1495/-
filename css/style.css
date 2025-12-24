@@ -172,3 +172,27 @@ input[type="text"] {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
 }
+
+/* ✍️ Рукописный текст */
+#support {
+    font-family: 'Pacifico', cursive;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #3a2f28;
+    white-space: pre-line;
+    opacity: 0;
+}
+
+/* Плавное появление фото и заголовка */
+#screen3 img,
+#screen3 h2 {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.8s ease;
+}
+
+#screen3.show img,
+#screen3.show h2 {
+    opacity: 1;
+    transform: translateY(0);
+}

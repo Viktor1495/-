@@ -6,7 +6,9 @@ function startCard() {
     const username = document.getElementById('username').value || 'Дорогая моя';
     document.getElementById('task-title').textContent = `${username}, эта новогодняя открытка тебе!`;
     document.getElementById('congrats').textContent = `Ты мой главный подарок, ${username}! 💖`;
-    document.getElementById('support').textContent = `Я обожаю тебя и безумно скучаю. Ты лучшая девушка на свете, прочти этот текст, под эту песню. Почему именно она, потому что она напоминает мне наш первый вечер вместе. Эта песня играла в фильме, который мы смотрели. Мне очень хочется, чтобы ты почувствовала это письмо не глазами, а чем-то глубже - как тихое «я рядом», даже когда между нами расстояние.
+    document.getElementById('support').textContent = `Я обожаю тебя и безумно скучаю. Ты лучшая девушка на свете, прочти этот текст, под эту песню. 
+    Почему именно она, потому что она напоминает мне наш первый вечер вместе. Эта песня играла в фильме, который мы смотрели. 
+    Мне очень хочется, чтобы ты почувствовала это письмо не глазами, а чем-то глубже - как тихое «я рядом», даже когда между нами расстояние.
 
 Ты для меня человек, к которому хочется тянуться. О котором думаешь в течение дня. Которого хочется беречь - в мелочах, в словах, в паузах. Ты для меня важна не за что-то, а просто потому что ты - это ты.
 
@@ -25,14 +27,19 @@ function startCard() {
 
 // Переход между экранами
 function goToScreen(number) {
-    document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active', 'show');
+    });
+
     const nextScreen = document.getElementById(`screen${number}`);
     nextScreen.classList.add('active');
     currentScreen = number;
 
     if (number === 3) {
         document.getElementById('music').play();
-        vibrate([100, 50, 100]); // Вибрация финала
+        vibrate([100, 50, 100]);
+
+        startFinalScene();
     }
 }
 
@@ -107,3 +114,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // редкие искры
     setInterval(createSparkle, 2500);
 });
+
+function startFinalScene() {
+    const screen = document.getElementById('screen3');
+    const textElement = document.getElementById('support');
+
+    // сохраняем текст
+    const fullText = textElement.textContent;
+    textElement.textContent = '';
+    textElement.style.opacity = 1;
+
+    // 1️⃣ показать фото и заголовок
+    setTimeout(() => {
+        screen.classList.add('show');
+    }, 300);
+
+    // 2️⃣ начать писать текст
+    setTimeout(() => {
+        typeText(textElement, fullText, 35);
+    }, 1800);
+}
+
+function typeText(element, text, speed) {
+    let index = 0;
+
+    function typing() {
+        if (index >= text.length) return;
+
+        const currentChar = text.charAt(index);
+        const nextChars = text.substring(index, index + 2);
+
+        // ✍️ если новый абзац — делаем паузу
+        if (nextChars === '\n\n') {
+            element.textContent += '\n\n';
+            index += 2;
+
+            // микро-пауза между абзацами
+            setTimeout(typing, 900);
+            return;
+        }
+
+        element.textContent += currentChar;
+        index++;
+
+        setTimeout(typing, speed);
+    }
+
+    typing();
+}
