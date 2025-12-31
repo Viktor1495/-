@@ -18,10 +18,9 @@ function startCard() {
 
 С новым годом тебя, моя ${username}!
 Пусть этот год, будет для тебя началом нового счасться!`;
-    
-    
+
     goToScreen(2);
-    vibrate(100); // Вибрация
+    vibrate(100);
     requestFullscreen();
 }
 
@@ -38,7 +37,6 @@ function goToScreen(number) {
     if (number === 3) {
         document.getElementById('music').play();
         vibrate([100, 50, 100]);
-
         startFinalScene();
     }
 }
@@ -48,25 +46,29 @@ function vibrate(pattern) {
     if (navigator.vibrate) navigator.vibrate(pattern);
 }
 
-// Fullscreen (эффект приложения)
+// Fullscreen
 function requestFullscreen() {
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
     }
 }
 
-// Свайпы: вперед/назад
-document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+// Свайпы
+document.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+});
+
 document.addEventListener('touchend', e => {
     let endX = e.changedTouches[0].clientX;
     let diff = endX - startX;
+
     if (Math.abs(diff) > 50) {
-        if (diff < 0 && currentScreen < 3) goToScreen(currentScreen + 1); // свайп влево
-        if (diff > 0 && currentScreen > 1) goToScreen(currentScreen - 1); // свайп вправо
+        if (diff < 0 && currentScreen < 3) goToScreen(currentScreen + 1);
+        if (diff > 0 && currentScreen > 1) goToScreen(currentScreen - 1);
     }
 });
 
-// ❄️ Падающий снег
+// ❄️ Снег
 const snowContainer = document.getElementById('snow');
 
 function createSnowflake() {
@@ -81,18 +83,13 @@ function createSnowflake() {
 
     snowContainer.appendChild(snowflake);
 
-    setTimeout(() => {
-        snowflake.remove();
-    }, 10000);
+    setTimeout(() => snowflake.remove(), 10000);
 }
 
-// создаём снег регулярно
 setInterval(createSnowflake, 300);
 
-// ✨ Золотые искры
+// ✨ Искры
 document.addEventListener('DOMContentLoaded', () => {
-    const snowContainer = document.getElementById('snow');
-
     function createSparkle() {
         const sparkle = document.createElement('div');
         sparkle.classList.add('sparkle');
@@ -106,42 +103,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         snowContainer.appendChild(sparkle);
 
-        setTimeout(() => {
-            sparkle.remove();
-        }, 20000);
+        setTimeout(() => sparkle.remove(), 20000);
     }
 
-    // редкие искры
     setInterval(createSparkle, 2500);
 });
 
+// 🎬 Финальная сцена
 function startFinalScene() {
     const screen = document.getElementById('screen3');
     const textElement = document.getElementById('support');
+    const finalNote = document.getElementById('final-note');
 
-    // сохраняем текст
+    // сброс финальной строки
+    if (finalNote) {
+        finalNote.classList.remove('show');
+        finalNote.style.opacity = 0;
+    }
+
     const fullText = textElement.textContent;
     textElement.textContent = '';
     textElement.style.opacity = 1;
 
-    // 1️⃣ показать фото и заголовок
     setTimeout(() => {
         screen.classList.add('show');
     }, 300);
 
-    // 2️⃣ начать писать текст
     setTimeout(() => {
         typeText(textElement, fullText, 35);
     }, 1800);
 }
 
+// ✍️ Печать текста + финальная строка
 function typeText(element, text, speed) {
     let index = 0;
 
     function typing() {
         if (index >= text.length) {
             setTimeout(() => {
-                document.getElementById('final-note').classList.add('show');
+                const finalNote = document.getElementById('final-note');
+                if (finalNote) {
+                    finalNote.classList.add('show');
+                }
             }, 5500);
             return;
         }
@@ -163,7 +166,5 @@ function typeText(element, text, speed) {
 
     typing();
 }
-
-
 
 
