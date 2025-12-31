@@ -140,7 +140,6 @@ function typeText(element, text, speed) {
 
     function typing() {
         if (index >= text.length) {
-            // ⏳ тихая пауза
             setTimeout(() => {
                 document.getElementById('final-note').classList.add('show');
             }, 5500);
@@ -149,7 +148,6 @@ function typeText(element, text, speed) {
 
         const nextChars = text.substring(index, index + 2);
 
-        // пауза между абзацами
         if (nextChars === '\n\n') {
             element.textContent += '\n\n';
             index += 2;
@@ -165,6 +163,7 @@ function typeText(element, text, speed) {
 
     typing();
 }
+
 
 
 
