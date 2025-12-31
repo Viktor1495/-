@@ -127,13 +127,19 @@ function startFinalScene() {
     textElement.style.display = 'block';
 
     setTimeout(() => {
-        screen.classList.add('show');
-    }, 300);
+    screen.classList.add('show');
 
+    // теперь экран точно видим, показываем final-note после таймера
     setTimeout(() => {
-        typeText(textElement, fullText, 35);
-    }, 1800);
-}
+        const finalNote = document.getElementById('final-note');
+        if (finalNote) {
+            finalNote.style.display = 'block';
+            finalNote.style.opacity = 1;
+        }
+    }, 5500);
+
+}, 300);
+
 
 // ✍️ Печать текста + финальная строка
 function typeText(element, text, speed) {
@@ -168,6 +174,7 @@ function typeText(element, text, speed) {
 
     typing();
 }
+
 
 
 
