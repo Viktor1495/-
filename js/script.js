@@ -139,22 +139,25 @@ function typeText(element, text, speed) {
     let index = 0;
 
     function typing() {
-        if (index >= text.length) return;
+        if (index >= text.length) {
+            // ⏳ тихая пауза
+            setTimeout(() => {
+                document.getElementById('final-note').classList.add('show');
+            }, 5500);
+            return;
+        }
 
-        const currentChar = text.charAt(index);
         const nextChars = text.substring(index, index + 2);
 
-        // ✍️ если новый абзац — делаем паузу
+        // пауза между абзацами
         if (nextChars === '\n\n') {
             element.textContent += '\n\n';
             index += 2;
-
-            // микро-пауза между абзацами
             setTimeout(typing, 900);
             return;
         }
 
-        element.textContent += currentChar;
+        element.textContent += text.charAt(index);
         index++;
 
         setTimeout(typing, speed);
@@ -162,5 +165,6 @@ function typeText(element, text, speed) {
 
     typing();
 }
+
 
 
