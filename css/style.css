@@ -199,13 +199,15 @@ input[type="text"] {
 
 #final-note {
     margin-top: 30px;
-    font-size: 14px;
+    font-size: 15px;
     color: #777;
     opacity: 0;
     transition: opacity 2.5s ease;
     text-align: center;
+    font-family: 'Pacifico', cursive;
 }
 
 #final-note.show {
     opacity: 1;
 }
+
