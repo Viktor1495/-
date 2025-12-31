@@ -124,6 +124,7 @@ function startFinalScene() {
     const fullText = textElement.textContent;
     textElement.textContent = '';
     textElement.style.opacity = 1;
+    textElement.style.display = 'block';
 
     setTimeout(() => {
         screen.classList.add('show');
@@ -140,14 +141,15 @@ function typeText(element, text, speed) {
 
     function typing() {
         if (index >= text.length) {
-            setTimeout(() => {
-                const finalNote = document.getElementById('final-note');
-                if (finalNote) {
-                    finalNote.classList.add('show');
-                }
-            }, 5500);
-            return;
+    setTimeout(() => {
+        const finalNote = document.getElementById('final-note');
+        if (finalNote) {
+            finalNote.style.display = 'block'; // добавлено
+            finalNote.style.opacity = 1;       // сразу видимый
         }
+    }, 5500);
+    return;
+}
 
         const nextChars = text.substring(index, index + 2);
 
@@ -166,5 +168,6 @@ function typeText(element, text, speed) {
 
     typing();
 }
+
 
 
