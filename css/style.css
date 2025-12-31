@@ -196,27 +196,3 @@ input[type="text"] {
     opacity: 1;
     transform: translateY(0);
 }
-
-#screen3.show #support,
-#screen3.show #final-note {
-    opacity: 1;
-    transition: opacity 0.8s ease;
-}
-
-#final-note {
-    font-family: 'Pacifico', cursive;
-    margin-top: 30px;
-    font-size: 17px;
-    color: #3a2f28;
-    opacity: 0;
-    transition: opacity 2.5s ease;
-    text-align: center;
-}
-
-#final-note.show {
-    opacity: 1;
-}
-
-
-
-
